@@ -1,0 +1,38 @@
+.dropdown-content {
+    border: 10px;
+    border-color: blue;
+}
+
+select {
+    color: #454545;
+    background-color: #f6f6f6;
+    border-style: none;
+    border: solid 1px;
+    border-color: #e0e0e0;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+select:focus {
+    color: black;
+}
+
+select:hover {
+    background-color: #e9e9ed;
+}
+
+option {
+    background: white;
+    font-weight: normal;
+    color: black;
+}
+
+option:hover {
+    color: white;
+    background-color: #007fff;
+    border: solid #003eff;
+}
+
