@@ -1,4 +1,4 @@
-export const DEPARTMENT = ["Sales", "Markenting", "Engineering", "Human Ressources", "Legal"]
+export const DEPARTMENT = ["Sales", "Marketing", "Engineering", "Human Ressources", "Legal"]
 
 
 export const STATES = [

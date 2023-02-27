@@ -55,6 +55,10 @@ export const setDepartment = (department) => ({
     payload: department,
 })
 
+export const resetProfil = () => ({
+    type: "resetProfil",
+})
+
 
 export default function CreateEmployeeReducer(state = initialState, action) {
     if(action.type === "setFirstName") {
@@ -109,6 +113,20 @@ export default function CreateEmployeeReducer(state = initialState, action) {
         return {
             ...state, 
             department: state.department = action.payload
+        }
+    }
+    if(action.type === "resetProfil") {
+        return {
+            ...state,
+            firstName: state.firstName = "",
+            lastName: state.lastName = "",
+            dateOfBirth: state.dateOfBirth = "",
+            startDate: state.startDate = "",
+            street: state.street = "",
+            city: state.city = "",
+            addressState: state.addressState = "",
+            zipCode: state.zipCode = "", 
+            department: state.department = "",
         }
     }
     return state;
