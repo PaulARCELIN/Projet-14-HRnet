@@ -4,6 +4,8 @@ import './CreateEmployeeForm.css'
 import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setFirstName, setLastName, setDateOfBirth, setStartDate, setStreet, setCity, setAddressState, setZipCode, setDepartment, resetProfil } from '../../store/createEmployeeState';
+import { Modal } from '../Modal/Modal';
+import { toggleModal } from '../../store/modal';
 
 export function CreateEmployeeForm() {
     
@@ -33,7 +35,7 @@ const dispatch = useDispatch()
     function saveEmployee(e){
         e.preventDefault()
         list.push(employeeProfil)
-        
+        dispatch(toggleModal())
     }
     
     const statesList = STATES.map((e) => {
@@ -63,9 +65,11 @@ const dispatch = useDispatch()
                     <label htmlFor="zip-code">Zip Code</label>
                     <input id="zip-code" type={"number"} required onChange={(e) => dispatch(setZipCode(e.target.value))}></input>
                 </fieldset>
-                <Dropdown list={DEPARTMENT} label="Department" id="department" required selection={chooseDepartment}/>
-                <button className="save-button" type='submit'>Save</button> 
+                <Dropdown list={DEPARTMENT} label="Department" id="department" required selection={chooseDepartment}/>  
+                <button className="save-button" type='submit'>Save</button>  
             </form>
+            <Modal msg={'Employee Created!'}/>
+            <button onClick={() => console.log(employeeProfil)}>PRof</button> 
         </div> 
     )
 }

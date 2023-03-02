@@ -3,6 +3,14 @@
     flex-direction: column;
 }
 
+.table-content > div:nth-of-type(even){
+    background-color: rgb(134, 184, 241);
+}
+
+.table-content > div:nth-of-type(odd){
+    background-color: rgb(136, 136, 204);
+}
+
 .table-titles {
     display: flex;
 }
@@ -13,12 +21,36 @@
 
 .title {
     display: flex;
+    justify-content: space-around;
     align-items: center;
     margin: 0px;
     border: solid 1px;
     width: 120px;
     font-weight: bolder;
+    cursor: pointer;
 }
+
+.active-icon {
+    color: rgb(136, 136, 204);
+}
+
+.inactive-icon {
+    display: flex;
+    flex-direction: column;
+    color: grey;
+}
+
+.inactive-icon :nth-child(odd) {
+    position: relative;
+    top: 4px;
+}
+
+.inactive-icon :nth-child(even) {
+    position: relative;
+    bottom: 4px;
+}
+
+
 
 p {
     margin: 5px;

@@ -1,5 +1,7 @@
+import './SearchBar.css'
+
 export function SearchBar( {selection} ) {
-    return (<div>
-        <input onChange={(e) => selection(e.target.value)}></input>
+    return (<div className='searchbar-container'>
+        <input className='searchbar-input' onChange={(e) => selection(e.target.value)} placeholder='Search'></input>
     </div>)
 }

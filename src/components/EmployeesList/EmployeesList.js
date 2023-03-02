@@ -3,16 +3,37 @@ import './EmployeesList.css'
 import { SearchBar } from '../SearchBar/SearchBar'
 import { useState } from 'react'
 
-
 export function EmployeesList() {
     
     const [searchInput, setSearchInput] = useState('')
+    const [orderKey, setOrderKey] = useState('firstName')
+    const [reverseKey, setReverseKey] = useState(false)
+
+    const list = useSelector((state) => state).employeeList.list
+
+    list.sort((a, b) => {
+        
+        let direction = 1;
+        
+        let valueA = a[orderKey];
+        let valueB = b[orderKey];
+
+        if (reverseKey === false)
+            direction = 1;
+        if (reverseKey === true)
+            direction = -1;
+
+        if (valueA > valueB)
+            return 1 * direction;
+        if (valueB > valueA)
+            return -1 * direction;
+
+        return 0;
+    });
 
     function getSearchInput(input) {
         setSearchInput(input)
     } 
-
-    const list = useSelector((state) => state).employeeList.list
     
     function searchBarAlgo(employee) {
         if(searchInput.length >= 1) {     
@@ -33,19 +54,46 @@ export function EmployeesList() {
         else return true     
     }
 
+    function sortClick(key) {
+        if(orderKey === key) {
+            setReverseKey(!reverseKey)
+        }
+        else {
+            setReverseKey(false)
+        }
+        setOrderKey(key)
+    }
+
+    function setSortIcon(key) {
+        if(orderKey === key && reverseKey === false) {
+            return (<i className="fa-solid fa-caret-up active-icon"></i>)
+        } 
+        else if (orderKey === key && reverseKey === true) {
+            return (<i className="fa-solid fa-caret-down active-icon"></i>)
+        }
+        else {
+            return (
+            <div className='inactive-icon'>    
+                <i className="fa-solid fa-caret-up"></i>
+                <i className="fa-solid fa-caret-down"></i>
+            </div>)
+        }
+    }
+
+
     return (<div>
         <SearchBar selection={getSearchInput}/>
         <div className='table'>
             <div className='table-titles'>
-                <div className='title'><p>First Name</p></div>
-                <div className='title'><p>Last Name</p></div>
-                <div className='title'><p>Start Date</p></div>
-                <div className='title'><p>Department</p></div>
-                <div className='title'><p>Date of Birth</p></div>
-                <div className='title'><p>Street</p></div>
-                <div className='title'><p>City</p></div>
-                <div className='title'><p>State</p></div>
-                <div className='title'><p>Zip Code</p></div>
+                <div className='title' onClick={() => sortClick('firstName')}><p>First Name</p>{setSortIcon('firstName')}</div>
+                <div className='title' onClick={() => sortClick('lastName')}><p>Last Name</p>{setSortIcon('lastName')}</div>
+                <div className='title' onClick={() => sortClick('startDate')}><p>Start Date</p>{setSortIcon('startDate')}</div>
+                <div className='title' onClick={() => sortClick('department')}><p>Department</p>{setSortIcon('department')}</div>
+                <div className='title' onClick={() => sortClick('dateOfBirth')}><p>Date of Birth</p>{setSortIcon('dateOfBirth')}</div>
+                <div className='title' onClick={() => sortClick('street')}><p>Street</p>{setSortIcon('street')}</div>
+                <div className='title' onClick={() => sortClick('city')}><p>City</p>{setSortIcon('city')}</div>
+                <div className='title' onClick={() => sortClick('addressState')}><p>State</p>{setSortIcon('addressState')}</div>
+                <div className='title' onClick={() => sortClick('zipCode')}><p>Zip Code</p>{setSortIcon('zipCode')}</div>
             </div>
             <div className='table-content'>
                 {list.map((element) => {
@@ -66,6 +114,6 @@ export function EmployeesList() {
                 })}
             </div>
         </div>
-        <button onClick={() => console.log(searchInput,list)}>LIST</button>
+        <button onClick={() => console.log(orderKey, reverseKey)}>LIST</button>
     </div>)
 }

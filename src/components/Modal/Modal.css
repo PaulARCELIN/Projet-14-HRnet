@@ -1,0 +1,37 @@
+.modal-container {
+    position: absolute;
+    height: 145%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-background {
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    opacity: 1;
+    background-color: white;
+    width: 350px;
+    padding: 13px;
+    border-radius: 5px;
+    box-shadow:  0 0 1em black;
+}
+
+.modal-message i {
+    cursor: pointer;
+    transform: scale(200%);
+    position: relative;
+    bottom: 20px;
+    left: 15px;
+}
