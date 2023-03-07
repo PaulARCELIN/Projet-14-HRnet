@@ -6,7 +6,7 @@ const initialState = {
     street: '',
     city: '',
     addressState: '',
-    zipCode: '',
+    zipCode: 0,
     department: '',
 }
 

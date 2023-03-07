@@ -6,15 +6,20 @@ import { setFirstName, setLastName, setDateOfBirth, setStartDate, setStreet, set
 import { Modal } from '../Modal/Modal';
 import { toggleEmployeeCreatedModal } from '../../store/modal';
 import { postProfil } from '../../services/api';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
+
+
 
 export function CreateEmployeeForm() {
     
 const dispatch = useDispatch()
 
     const employeeProfil = useSelector((state) => state).createEmployee
+    const birthDate = employeeProfil.dateOfBirth
+    const startDate = employeeProfil.startDate
+
     const modalState = useSelector((state) => state.modal)
-
-
 
     const bodyRequest = employeeProfil
 
@@ -28,7 +33,6 @@ const dispatch = useDispatch()
 
     const saveEmployee = async (e) => {
         e.preventDefault()
-        console.log(bodyRequest)
         postProfil(bodyRequest)
         dispatch(toggleEmployeeCreatedModal())
         dispatch(resetProfil())
@@ -48,9 +52,10 @@ const dispatch = useDispatch()
                 <label htmlFor="last-name">Last Name</label>
                 <input id="last-name" type={"texte"} required onChange={(e) => dispatch(setLastName(e.target.value))}></input>
                 <label htmlFor="date-of-birth">Date of Birth</label>
-                <input id="date-of-birth" type={"date"} required onChange={(e) => dispatch(setDateOfBirth(e.target.value))}></input>
+                {/* <input id="date-of-birth" type={"date"} required onChange={(e) => dispatch(setDateOfBirth(e.target.value))}></input> */}
+                <ReactDatePicker id="date-of-birth" selected={birthDate} onChange={(date) => dispatch(setDateOfBirth(date))}/>
                 <label htmlFor="start-date">Start Date</label>
-                <input id="start-date" type={"date"} required onChange={(e) => dispatch(setStartDate(e.target.value))}></input>
+                <ReactDatePicker id="start-date" selected={startDate} onChange={(date) => dispatch(setStartDate(date))}/>
                 <fieldset className='address'>
                     <legend>Address</legend>
                     <label htmlFor="street">Street</label>
@@ -64,8 +69,7 @@ const dispatch = useDispatch()
                 <Dropdown list={DEPARTMENT} label="Department" id="department" required selection={chooseDepartment}/>  
                 <button className="save-button" type='submit'>Save</button>  
             </form>
-            <Modal msg={'Employee Created!'} toggle={toggleEmployeeCreatedModal()} state={modalState.isEmployeeCreatedModalOpen}/>
-            <button onClick={() => console.log(modalState)}>PRof</button> 
-        </div> 
+            <Modal msg={'Employee Created!'} toggle={toggleEmployeeCreatedModal()} state={modalState.isEmployeeCreatedModalOpen}/>            
+        </div>    
     )
 }

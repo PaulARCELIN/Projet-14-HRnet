@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux"
 import './Modal.css'
 import { useDispatch } from "react-redux"
 
@@ -7,7 +6,6 @@ export function Modal ( {msg , toggle, state} ) {
 
     const dispatch = useDispatch()
     const isModalOpen = state
-    console.log(isModalOpen)
 
     if(isModalOpen) {
         return (

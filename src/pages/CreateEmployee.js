@@ -12,7 +12,6 @@ export function CreateEmployee() {
                 <Link to={`/current-employees`}>View Current Employees</Link>
             </div>
             <CreateEmployeeForm />
-            <TestComponent />
         </div>
     )
 }

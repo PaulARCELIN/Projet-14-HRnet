@@ -14,8 +14,8 @@ export function EmployeesList() {
     const [list, setList] = useState([])
     const [entry, setEntry] = useState(10)
 
-    const entryChoice = [1, 5, 10, 25, 50, 100]
-   
+    const entryChoice = [5, 10, 25, 50, 100]
+    
     useEffect(() => {
         initData()
     }, [])
@@ -96,7 +96,7 @@ export function EmployeesList() {
 
     return (<div>
         <div className='tools'>
-            <Dropdown list={entryChoice} label="Entry :" id="Entry :" selection={setEntry}/>
+            <Dropdown list={entryChoice} label="Entry :" id="entry-dropdown" selection={setEntry}/>
             <SearchBar selection={setSearchInput}/>
         </div>
         <div className='table'>
@@ -117,9 +117,9 @@ export function EmployeesList() {
                         return (<div className='table-line'>
                         <div className='table-cell'><p>{element.firstName}</p></div>
                         <div className='table-cell'><p>{element.lastName}</p></div>
-                        <div className='table-cell'><p>{element.startDate}</p></div>
+                        <div className='table-cell'><p>{element.startDate.slice(0, 10)}</p></div>
                         <div className='table-cell'><p>{element.department}</p></div>
-                        <div className='table-cell'><p>{element.dateOfBirth}</p></div>
+                        <div className='table-cell'><p>{element.dateOfBirth.slice(0, 10)}</p></div>
                         <div className='table-cell'><p>{element.street}</p></div>
                         <div className='table-cell'><p>{element.city}</p></div>
                         <div className='table-cell'><p>{element.addressState}</p></div>
@@ -128,7 +128,7 @@ export function EmployeesList() {
                     } 
                 })}
             </div>
+            <p>Entry shown {displayedList.length} of {list.length}</p>
         </div>
-        <button onClick={() => console.log(entry)}>LIST</button>
     </div>)
 }

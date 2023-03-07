@@ -4,11 +4,11 @@
 }
 
 .table-content > div:nth-of-type(even){
-    background-color: rgb(134, 184, 241);
+    background-color: rgb(177, 205, 238);
 }
 
 .table-content > div:nth-of-type(odd){
-    background-color: rgb(136, 136, 204);
+    background-color: rgb(183, 183, 204);
 }
 
 .table-titles {
@@ -49,8 +49,6 @@
     position: relative;
     bottom: 4px;
 }
-
-
 
 p {
     margin: 5px;

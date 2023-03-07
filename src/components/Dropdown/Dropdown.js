@@ -13,4 +13,3 @@ export function Dropdown( {list , label, id, selection} ) {
         </div>
     </div>)
 }
-
