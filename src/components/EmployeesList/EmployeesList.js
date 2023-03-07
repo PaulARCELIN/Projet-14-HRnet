@@ -1,16 +1,30 @@
-import { useSelector } from 'react-redux'
 import './EmployeesList.css'
 import { SearchBar } from '../SearchBar/SearchBar'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getEmployees } from '../../services/api'
+import { Dropdown } from '../Dropdown/Dropdown'
+
+
 
 export function EmployeesList() {
     
     const [searchInput, setSearchInput] = useState('')
     const [orderKey, setOrderKey] = useState('firstName')
     const [reverseKey, setReverseKey] = useState(false)
+    const [list, setList] = useState([])
+    const [entry, setEntry] = useState(10)
 
-    const list = useSelector((state) => state).employeeList.list
+    const entryChoice = [1, 5, 10, 25, 50, 100]
+   
+    useEffect(() => {
+        initData()
+    }, [])
 
+    async function initData() {
+        const data = await getEmployees()
+        setList(data)
+    }
+    
     list.sort((a, b) => {
         
         let direction = 1;
@@ -31,10 +45,10 @@ export function EmployeesList() {
         return 0;
     });
 
-    function getSearchInput(input) {
-        setSearchInput(input)
-    } 
-    
+   
+    const displayedList = list.filter(e => list.indexOf(e) < entry)
+    console.log(displayedList)
+
     function searchBarAlgo(employee) {
         if(searchInput.length >= 1) {     
             if(employee.firstName.toUpperCase().includes(searchInput.toUpperCase()) 
@@ -80,9 +94,11 @@ export function EmployeesList() {
         }
     }
 
-
     return (<div>
-        <SearchBar selection={getSearchInput}/>
+        <div className='tools'>
+            <Dropdown list={entryChoice} label="Entry :" id="Entry :" selection={setEntry}/>
+            <SearchBar selection={setSearchInput}/>
+        </div>
         <div className='table'>
             <div className='table-titles'>
                 <div className='title' onClick={() => sortClick('firstName')}><p>First Name</p>{setSortIcon('firstName')}</div>
@@ -96,7 +112,7 @@ export function EmployeesList() {
                 <div className='title' onClick={() => sortClick('zipCode')}><p>Zip Code</p>{setSortIcon('zipCode')}</div>
             </div>
             <div className='table-content'>
-                {list.map((element) => {
+                {displayedList.map((element) => {
                     if(searchBarAlgo(element)) {
                         return (<div className='table-line'>
                         <div className='table-cell'><p>{element.firstName}</p></div>
@@ -109,11 +125,10 @@ export function EmployeesList() {
                         <div className='table-cell'><p>{element.addressState}</p></div>
                         <div className='table-cell'><p>{element.zipCode}</p></div>
                     </div>)
-                    }
-                    
+                    } 
                 })}
             </div>
         </div>
-        <button onClick={() => console.log(orderKey, reverseKey)}>LIST</button>
+        <button onClick={() => console.log(entry)}>LIST</button>
     </div>)
 }

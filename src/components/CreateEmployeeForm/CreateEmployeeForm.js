@@ -1,28 +1,22 @@
 import { Dropdown } from '../Dropdown/Dropdown'
 import { STATES, DEPARTMENT } from '../../variables/stateList'
 import './CreateEmployeeForm.css'
-import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setFirstName, setLastName, setDateOfBirth, setStartDate, setStreet, setCity, setAddressState, setZipCode, setDepartment, resetProfil } from '../../store/createEmployeeState';
 import { Modal } from '../Modal/Modal';
-import { toggleModal } from '../../store/modal';
+import { toggleEmployeeCreatedModal } from '../../store/modal';
+import { postProfil } from '../../services/api';
 
 export function CreateEmployeeForm() {
     
 const dispatch = useDispatch()
 
-    /* const [firstName, setFirstName] = useState('') */
-    /* const [lastName, setLastName] = useState('') */
-    /* const [dateOfBirth, setDateOfBirth] = useState('') */
-    /* const [startDate, setStartDate] = useState('') */
-    /* const [street, setStreet] = useState('') */
-    /* const [city, setCity] = useState('') */
-    /* const [addressState, setAddressState] = useState('') */
-    /* const [zipCode, setZipCode] = useState('') */
-    /* const [department, setDepartment] = useState('') */
-
-    const list = useSelector((state) => state).employeeList.list
     const employeeProfil = useSelector((state) => state).createEmployee
+    const modalState = useSelector((state) => state.modal)
+
+
+
+    const bodyRequest = employeeProfil
 
     const chooseState = (state) => {
         dispatch(setAddressState(state))
@@ -32,10 +26,12 @@ const dispatch = useDispatch()
         dispatch(setDepartment(dpt))
     }
 
-    function saveEmployee(e){
+    const saveEmployee = async (e) => {
         e.preventDefault()
-        list.push(employeeProfil)
-        dispatch(toggleModal())
+        console.log(bodyRequest)
+        postProfil(bodyRequest)
+        dispatch(toggleEmployeeCreatedModal())
+        dispatch(resetProfil())
     }
     
     const statesList = STATES.map((e) => {
@@ -68,8 +64,8 @@ const dispatch = useDispatch()
                 <Dropdown list={DEPARTMENT} label="Department" id="department" required selection={chooseDepartment}/>  
                 <button className="save-button" type='submit'>Save</button>  
             </form>
-            <Modal msg={'Employee Created!'}/>
-            <button onClick={() => console.log(employeeProfil)}>PRof</button> 
+            <Modal msg={'Employee Created!'} toggle={toggleEmployeeCreatedModal()} state={modalState.isEmployeeCreatedModalOpen}/>
+            <button onClick={() => console.log(modalState)}>PRof</button> 
         </div> 
     )
 }

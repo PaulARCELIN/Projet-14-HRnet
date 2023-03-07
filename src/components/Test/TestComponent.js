@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { toggleModal } from "../../store/modal";
+import { toggleEmployeeCreatedModal } from "../../store/modal";
 
 
 export default function TestComponent() {
@@ -10,6 +10,6 @@ export default function TestComponent() {
     
     return <div>
         <button onClick={() => console.log(state, isModalOpen)}>Log State</button>
-        <button onClick={() => dispatch(toggleModal())}>toggle modal</button>
+        <button onClick={() => dispatch(toggleEmployeeCreatedModal())}>toggle modal</button>
     </div>
 }

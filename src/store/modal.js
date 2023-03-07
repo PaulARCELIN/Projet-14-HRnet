@@ -1,16 +1,16 @@
 const initialState = {
-    isModalOpen: false,
+    isEmployeeCreatedModalOpen: false,
 }
 
-export const toggleModal = () => ({
-    type: "toggleModal",
+export const toggleEmployeeCreatedModal = () => ({
+    type: "toggleEmployeeCreatedModal",
 })
 
 export default function ModalReducer(state = initialState, action) {
-    if(action.type === "toggleModal") {
+    if(action.type === "toggleEmployeeCreatedModal") {
         return {
             ...state, 
-            isModalOpen: !state.isModalOpen
+            isEmployeeCreatedModalOpen: !state.isEmployeeCreatedModalOpen
         }
     }
     return state;
