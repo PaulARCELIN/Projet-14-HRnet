@@ -61,6 +61,9 @@ export const resetProfil = () => ({
 
 
 export default function CreateEmployeeReducer(state = initialState, action) {
+    if (state === undefined) {
+        return false;
+    }
     if(action.type === "setFirstName") {
         return {
             ...state, 

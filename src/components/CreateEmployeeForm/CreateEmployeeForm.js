@@ -1,4 +1,4 @@
-import { Dropdown } from '../Dropdown/Dropdown'
+/* import { Dropdown } from '../Dropdown/Dropdown' */
 import { STATES, DEPARTMENT } from '../../variables/stateList'
 import './CreateEmployeeForm.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { toggleEmployeeCreatedModal } from '../../store/modal';
 import { postProfil } from '../../services/api';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
-
+import { Dropdown } from 'dropdown-paul-arcelin';
 
 
 export function CreateEmployeeForm() {

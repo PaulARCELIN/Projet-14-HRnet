@@ -2,8 +2,8 @@ import './EmployeesList.css'
 import { SearchBar } from '../SearchBar/SearchBar'
 import { useEffect, useState } from 'react'
 import { getEmployees } from '../../services/api'
-import { Dropdown } from '../Dropdown/Dropdown'
-
+/* import { Dropdown } from '../Dropdown/Dropdown' */
+import { Dropdown } from 'dropdown-paul-arcelin'
 
 
 export function EmployeesList() {
@@ -12,7 +12,7 @@ export function EmployeesList() {
     const [orderKey, setOrderKey] = useState('firstName')
     const [reverseKey, setReverseKey] = useState(false)
     const [list, setList] = useState([])
-    const [entry, setEntry] = useState(10)
+    const [entry, setEntry] = useState(5)
 
     const entryChoice = [5, 10, 25, 50, 100]
     
@@ -47,6 +47,7 @@ export function EmployeesList() {
 
    
     const displayedList = list.filter(e => list.indexOf(e) < entry)
+    
     console.log(displayedList)
 
     function searchBarAlgo(employee) {
@@ -128,7 +129,10 @@ export function EmployeesList() {
                     } 
                 })}
             </div>
-            <p>Entry shown {displayedList.length} of {list.length}</p>
+            <div>
+                <p>Entry shown {displayedList.length} of {list.length}</p>
+            </div>
+            
         </div>
     </div>)
 }
