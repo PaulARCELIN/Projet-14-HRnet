@@ -8,6 +8,24 @@ Before running the application be sure that json-server is running on [http://lo
 
  This will install install de json-server
  Then you have to create a file db.json to save the datas
+ 
+
+ Exemple : 
+ {
+  "employees": [
+    {
+      "id": ,
+      "firstName": "",
+      "lastName": "",
+      "dateOfBirth": "",
+      "startDate": "",
+      "street": "",
+      "city": "",
+      "addressState": "",
+      "zipCode": 0,
+      "department": ""
+    }]
+ }
 
 ### json-server --watch db.json 
 
