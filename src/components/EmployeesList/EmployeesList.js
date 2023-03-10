@@ -25,6 +25,8 @@ export function EmployeesList() {
         setList(data)
     }
     
+
+    //Sort function for Employee List
     list.sort((a, b) => {
         
         let direction = 1;
@@ -46,6 +48,7 @@ export function EmployeesList() {
     });
 
    
+    // Displayed list
     const displayedList = list.filter(e => list.indexOf(e) < entry)
     
 

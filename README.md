@@ -1,6 +1,18 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Json server 
+
+This app use json-server like a backend in order to save datats
+Before running the application be sure that json-server is running on [http://localhost:3000]
+
+### npm install --save json-server
+
+ This will install install de json-server
+ Then you have to create a file db.json to save the datas
+
+### json-server --watch db.json 
+
+    This will run the json server on [http://localhost:3000]
+    Be sur to be on this port in order to make the API calls
 
 ## Available Scripts
 
@@ -9,7 +21,10 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
+
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+It will say that something is already ruynning on this port and will open [http://localhost:3001] to run the app
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
