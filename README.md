@@ -8,7 +8,7 @@ Before running the application be sure that json-server is running on [http://lo
 
  This will install install de json-server
  Then you have to create a file db.json to save the datas
- 
+ Then create an object in wich you will save the datas
 
  Exemple : 
  {
