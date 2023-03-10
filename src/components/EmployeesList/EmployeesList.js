@@ -48,7 +48,6 @@ export function EmployeesList() {
    
     const displayedList = list.filter(e => list.indexOf(e) < entry)
     
-    console.log(displayedList)
 
     function searchBarAlgo(employee) {
         if(searchInput.length >= 1) {     

@@ -4,6 +4,8 @@ import { CurrentEmployees } from './pages/CurrentEmployees';
 import { Navigate } from 'react-router-dom';
 import './App.css'
 
+//App component handle de router
+
 function App() {
   return (
     <div className="App">
